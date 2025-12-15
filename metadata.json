@@ -1,0 +1,7 @@
+{
+  "name": "BlueOak.in",
+  "description": "A modern, multi-category e-commerce storefront featuring electronics, fashion, and home goods.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

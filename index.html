@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ElectroShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@0.294.0?external=react,react-dom",
+    "react": "https://esm.sh/react@18.2.0",
+    "react/": "https://esm.sh/react@18.2.0/",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.20.0?external=react,react-dom",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "ogl": "https://esm.sh/ogl@1.0.11",
+    "gsap": "https://esm.sh/gsap@3.12.5",
+    "framer-motion": "https://esm.sh/framer-motion@10.16.4?external=react,react-dom"
+  }
+}
+</script>
+<style>
+:root {
+  --purple-primary: rgba(132, 0, 255, 1);
+  --purple-glow: rgba(132, 0, 255, 0.2);
+  --purple-border: rgba(132, 0, 255, 0.8);
+  --border-color: rgba(255, 255, 255, 0.1); /* Adjusted for light/dark mode compat */
+}
+
+/* Base Card Styles required for the effect */
+.magic-bento-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 400px; /* Increased radius for better visibility */
+  z-index: 1;
+}
+
+/* Border glow effect */
+.magic-bento-card--border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px; /* Border width */
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(132, 0, 255, calc(var(--glow-intensity) * 0.8)) 0%,
+    rgba(132, 0, 255, calc(var(--glow-intensity) * 0.4)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1; 
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+/* Particle Container */
+.particle-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.particle {
+  pointer-events: none;
+}
+
+/* Global spotlight styles */
+.global-spotlight {
+  mix-blend-mode: screen; /* overlay or screen */
+  will-change: transform, opacity;
+  z-index: 50 !important; /* Below sticky header (z-50) but above cards */
+  pointer-events: none;
+}
+</style>
+</head>
+  <body class="text-gray-900 font-sans antialiased">
+    <div id="root"></div>
+  </body>
+</html>
